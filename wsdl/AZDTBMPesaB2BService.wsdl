@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WL5G3N0:definitions targetNamespace="http://cps.huawei.com/cpsinterface/c2bpayment" xmlns:WL5G3N0="http://schemas.xmlsoap.org/wsdl/" xmlns:WL5G3N1="http://cps.huawei.com/cpsinterface/c2bpayment" xmlns:WL5G3N2="http://schemas.xmlsoap.org/wsdl/soap/">
+  <WL5G3N0:types>
+    <xsi:schema targetNamespace="http://cps.huawei.com/cpsinterface/c2bpayment" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:c2bpayment="http://cps.huawei.com/cpsinterface/c2bpayment" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema">
+      <xsi:element name="C2BPaymentValidationRequest">
+        <xsi:complexType>
+          <xsi:sequence>
+            <xsi:element name="TransType" type="string"/>
+            <xsi:element name="TransID" type="string"/>
+            <xsi:element name="TransTime" type="string"/>
+            <xsi:element name="TransAmount" type="string"/>
+            <xsi:element name="BusinessShortCode" type="xs:string"/>
+            <xsi:element minOccurs="0" name="BillRefNumber" type="xs:string"/>
+            <xsi:element minOccurs="0" name="InvoiceNumber" type="xs:string"/>
+            <xsi:element name="MSISDN" type="string"/>
+            <xsi:element maxOccurs="unbounded" minOccurs="0" name="KYCInfo">
+              <xsi:complexType>
+                <xsi:sequence>
+                  <xsi:element name="KYCName">
+                    <xsi:annotation>
+                      <xsi:documentation/>
+                    </xsi:annotation>
+                    <xsi:simpleType>
+                      <xsi:restriction base="xs:string">
+                        <xsi:maxLength value="255"/>
+                      </xsi:restriction>
+                    </xsi:simpleType>
+                  </xsi:element>
+                  <xsi:element name="KYCValue">
+                    <xsi:simpleType>
+                      <xsi:restriction base="xs:string">
+                        <xsi:maxLength value="128"/>
+                      </xsi:restriction>
+                    </xsi:simpleType>
+                  </xsi:element>
+                </xsi:sequence>
+              </xsi:complexType>
+            </xsi:element>
+          </xsi:sequence>
+        </xsi:complexType>
+      </xsi:element>
+      <xsi:element name="C2BPaymentValidationResult">
+        <xsi:complexType>
+          <xsi:sequence>
+            <xsi:element name="ResultCode">
+              <xsi:simpleType>
+                <xsi:restriction base="xs:string">
+                  <xsi:maxLength value="20"/>
+                </xsi:restriction>
+              </xsi:simpleType>
+            </xsi:element>
+            <xsi:element minOccurs="0" name="ResultDesc">
+              <xsi:simpleType>
+                <xsi:restriction base="xs:string">
+                  <xsi:maxLength value="1024"/>
+                </xsi:restriction>
+              </xsi:simpleType>
+            </xsi:element>
+            <xsi:element minOccurs="0" name="ThirdPartyTransID" type="xs:string"/>
+          </xsi:sequence>
+        </xsi:complexType>
+      </xsi:element>
+      <xsi:element name="C2BPaymentConfirmationRequest">
+        <xsi:complexType>
+          <xsi:sequence>
+            <xsi:element name="TransactionType" type="xs:string"/>
+            <xsi:element name="TransID" type="string"/>
+            <xsi:element name="TransTime" type="string"/>
+            <xsi:element name="TransAmount" type="string"/>
+            <xsi:element name="BusinessShortCode" type="xs:string"/>
+            <xsi:element minOccurs="0" name="BillRefNumber" type="xs:string"/>
+            <xsi:element minOccurs="0" name="InvoiceNumber" type="xs:string"/>
+            <xsi:element name="OrgAccountBalance" type="xs:string"/>
+            <xsi:element minOccurs="0" name="ThirdPartyTransID" type="xs:string"/>
+            <xsi:element name="MSISDN" type="string"/>
+            <xsi:element maxOccurs="unbounded" minOccurs="0" name="KYCInfo">
+              <xsi:complexType>
+                <xsi:sequence>
+                  <xsi:element name="KYCName" type="string"/>
+                  <xsi:element name="KYCValue" type="xs:string"/>
+                </xsi:sequence>
+              </xsi:complexType>
+            </xsi:element>
+          </xsi:sequence>
+        </xsi:complexType>
+      </xsi:element>
+      <xsi:element name="C2BPaymentConfirmationResult" type="xs:string"/>
+    </xsi:schema>
+  </WL5G3N0:types>
+  <WL5G3N0:message name="C2BPaymentValidationRequestMessage">
+    <WL5G3N0:part element="WL5G3N1:C2BPaymentValidationRequest" name="C2BPaymentValidationRequest"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="C2BPaymentValidationResultMessage">
+    <WL5G3N0:part element="WL5G3N1:C2BPaymentValidationResult" name="C2BPaymentValidationResult"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="C2BPaymentConfirmationRequestMessage">
+    <WL5G3N0:part element="WL5G3N1:C2BPaymentConfirmationRequest" name="C2BPaymenConfirmationRequest"/>
+  </WL5G3N0:message>
+  <WL5G3N0:message name="C2BPaymentConfirmationResultMessage">
+    <WL5G3N0:part element="WL5G3N1:C2BPaymentConfirmationResult" name="C2BPaymentConfirmationResult"/>
+  </WL5G3N0:message>
+  <WL5G3N0:portType name="C2BPaymentValidationAndComfirmation">
+    <WL5G3N0:operation name="ValidateC2BPayment">
+      <WL5G3N0:input message="WL5G3N1:C2BPaymentValidationRequestMessage"/>
+      <WL5G3N0:output message="WL5G3N1:C2BPaymentValidationResultMessage"/>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="ConfirmC2BPayment">
+      <WL5G3N0:input message="WL5G3N1:C2BPaymentConfirmationRequestMessage"/>
+      <WL5G3N0:output message="WL5G3N1:C2BPaymentConfirmationResultMessage"/>
+    </WL5G3N0:operation>
+  </WL5G3N0:portType>
+  <WL5G3N0:binding name="C2BPaymentValidationAndConfirmationBinding" type="WL5G3N1:C2BPaymentValidationAndComfirmation">
+    <WL5G3N2:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <WL5G3N0:operation name="ValidateC2BPayment">
+      <WL5G3N2:operation soapAction="ValidateC2BPayment" style="document"/>
+      <WL5G3N0:input>
+        <WL5G3N2:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N2:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+    <WL5G3N0:operation name="ConfirmC2BPayment">
+      <WL5G3N2:operation soapAction="ConfirmC2BPayment" style="document"/>
+      <WL5G3N0:input>
+        <WL5G3N2:body use="literal"/>
+      </WL5G3N0:input>
+      <WL5G3N0:output>
+        <WL5G3N2:body use="literal"/>
+      </WL5G3N0:output>
+    </WL5G3N0:operation>
+  </WL5G3N0:binding>
+  <WL5G3N0:service name="C2BPaymentValidationAndConfirmationBindingQSService">
+    <WL5G3N0:documentation>OSB Service</WL5G3N0:documentation>
+    <WL5G3N0:port binding="WL5G3N1:C2BPaymentValidationAndConfirmationBinding" name="C2BPaymentValidationAndConfirmationBindingQSPort">
+      <WL5G3N2:address location="https://10.137.129.26:8310/eXSAPI/proxy/DTBMPesaC2BProxyService"/>
+    </WL5G3N0:port>
+  </WL5G3N0:service>
+</WL5G3N0:definitions>
