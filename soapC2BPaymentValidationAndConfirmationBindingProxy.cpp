@@ -157,7 +157,7 @@ int C2BPaymentValidationAndConfirmationBindingProxy::ValidateC2BPayment(const ch
 	if (endpoint)
 		soap_endpoint = endpoint;
 	if (soap_endpoint == NULL)
-		soap_endpoint = "https://10.137.129.26:8310/eXSAPI/proxy/DTBMPesaC2BProxyService";
+		soap_endpoint = "https://0.0.0.0:0/eXSAPI/proxy/MPesaC2BProxyService";
 	if (soap_action == NULL)
 		soap_action = "ValidateC2BPayment";
 	soap_tmp___ns1__ValidateC2BPayment.ns1__C2BPaymentValidationRequest = ns1__C2BPaymentValidationRequest;
@@ -212,7 +212,7 @@ int C2BPaymentValidationAndConfirmationBindingProxy::ConfirmC2BPayment(const cha
 	if (endpoint)
 		soap_endpoint = endpoint;
 	if (soap_endpoint == NULL)
-		soap_endpoint = "https://10.137.129.26:8310/eXSAPI/proxy/DTBMPesaC2BProxyService";
+		soap_endpoint = "https://0.0.0.0:0/eXSAPI/proxy/MPesaC2BProxyService";
 	if (soap_action == NULL)
 		soap_action = "ConfirmC2BPayment";
 	soap_tmp___ns1__ConfirmC2BPayment.ns1__C2BPaymentConfirmationRequest = ns1__C2BPaymentConfirmationRequest;

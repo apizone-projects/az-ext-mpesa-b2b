@@ -133,7 +133,7 @@
   <WL5G3N0:service name="C2BPaymentValidationAndConfirmationBindingQSService">
     <WL5G3N0:documentation>OSB Service</WL5G3N0:documentation>
     <WL5G3N0:port binding="WL5G3N1:C2BPaymentValidationAndConfirmationBinding" name="C2BPaymentValidationAndConfirmationBindingQSPort">
-      <WL5G3N2:address location="https://10.137.129.26:8310/eXSAPI/proxy/DTBMPesaC2BProxyService"/>
+      <WL5G3N2:address location="https://0.0.0.0:0/cgi/proxy/AZMPesaC2BProxyService"/>
     </WL5G3N0:port>
   </WL5G3N0:service>
 </WL5G3N0:definitions>
